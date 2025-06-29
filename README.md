@@ -1,12 +1,25 @@
-# Modelo de projeto de ciência de dados
+# Projeto de Emissão de CO2 de Veículos
 
-Modelo de projeto de ciência de dados para ser utilizado como referência em projetos
-futuros. Desenvolvido por mim, [Francisco Bustamante](https://github.com/chicolucio),
-para alunos iniciantes em ciência de dados de meus cursos e mentorias.
+O projeto atual tem como objetivo, a partir de uma base de dados do governo canadense, entender como varia a emissão de CO2 de veículos de acordo com features como marca e modelo do carro, tipo de combustível, ano de fabricação, tipo do carro, transmissão, número de cilindros do motor e a autonomia do carro, isto é, quantos litros de combustível o carro consome para cada 100km percorridos em meio urbano ou rodoviário.
 
-Inspiração: [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/)
+Base retirada do site do [governo canadense](https://open.canada.ca/data/en/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64).
 
-Clique no botão **Use this template** para criar um novo repositório com base neste modelo.
+**ANÁLISE EXPLORATÓRIA** 
+- Os dados retirados do link acima foram unificados, tratados e analisados através do arquivo "01_EDA_Analise_Exploratoria.ipynb". Com diversos gráficos já pudemos ter uma ideia inicial de como cada feature influenciava a nossa variável alvo (emissão de CO2).
+
+**MODELOS DE REGRESSÃO** 
+- Com os dados tratados, através do arquivo "02_Comparando_Modelos_Regressao.ipynb" foram testados diversos modelos e regressão - como LinearRegression, Ridge, Lasso, DecisionTreeRegressor, LightGBMRegressor, XGBRegressor, KNeighborsRegressor e LinearSVR - para entender qual deles tinha melhores resultados na previsão da emissão de CO2 para cada veículo. 
+- Foi tomado o cuidado de fazer o preprocessamento das colunas categóricas ordinais e não ordinais, e da normalização dos dados de features numéricas e da variável alvo através de métodos como PowerTransform e QuantileTransform. 
+- Tendo definido o melhor dos modelos testados acima, o que apresentou melhores resultados (XGBRegressor) passou pela otimização de parametros através de ferramentas como GridSearchCV. 
+- Busquei entender quais features mais influenciavam a variável alvo através de métodos como Permutation Importance e Feature Importance. 
+- O melhor modelo otimizado foi exportado com o nome "xgb_regressor.joblib" para ser usado na página do Streamlit.
+
+**STREAMLIT**
+- Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo "home_streamlit.py".
+- A página do possui 2 abas, uma para análise exploratória dos dados e outra para realizar a previsão da emissão de CO2 com base em algumas características do veículo
+- *Análise Exploratória dos Dados*: onde existem tabelas com filtros, gráficos como treemap, gráficos de barra, scatterplot feitos através da biblioteca Plotly para permitir melhor interação do usuário para entender como a emissão de CO2 varia com cada feature dos dados.
+- *Modelo de Previsão de CO2*: fazendo uso do modelo exportado citado acima, o usuário pode inputar algumas informações genéricas de qualquer carro (ano, tipo de carro, tamanho do motor, numero de cilindros, transmissão, tipo de combustível, consumo urbano, rodoviário e combinado) e há um botão para fornecer uma estimativa da emissão de CO2 do veículo com base nesses dados inputados. 
+
 
 ## Organização do projeto
 
@@ -19,68 +32,23 @@ Clique no botão **Use this template** para criar um novo repositório com base 
 |
 ├── dados              <- Arquivos de dados para o projeto.
 |
-├── modelos            <- Modelos treinados e serializados, previsões de modelos ou resumos de modelos
+├── modelos            <- Modelos treinados, otimizados e extraídos do projeto.
 |
-├── notebooks          <- Cadernos Jupyter. A convenção de nomenclatura é um número (para ordenação),
-│                         as iniciais do criador e uma descrição curta separada por `-`, por exemplo
-│                         `01-fb-exploracao-inicial-de-dados`.
+├── notebooks          <- Cadernos Jupyter onde foi desenvolvido o projeto
 │
 |   └──src             <- Código-fonte para uso neste projeto.
 |      │
-|      ├── __init__.py  <- Torna um módulo Python
-|      ├── config.py    <- Configurações básicas do projeto
-|      └── graficos.py  <- Scripts para criar visualizações exploratórias e orientadas a resultados
+|      ├── __init__.py   <- Torna um módulo Python
+|      ├── config.py     <- Configurações básicas do projeto
+|      └── models.py     <- Scripts com fórmulas para criação, treino, e verificação dos resultados dos modelos
+|      └── graficos.py   <- Scripts para criar visualizações exploratórias e orientadas a resultados
+|      └── auxiliares.py <- Scripts para criar dataframe dos coeficientes do modelo escolhido
+|
 |
 ├── referencias        <- Dicionários de dados, manuais e todos os outros materiais explicativos.
 |
 ├── relatorios         <- Análises geradas em HTML, PDF, LaTeX, etc.
 │   └── imagens        <- Gráficos e figuras gerados para serem usados em relatórios
-```
 
-## Configuração do ambiente
 
-1. Faça o clone do repositório que será criado a partir deste modelo.
 
-    ```bash
-    git clone ENDERECO_DO_REPOSITORIO
-    ```
-
-2. Crie um ambiente virtual para o seu projeto utilizando o gerenciador de ambientes de sua preferência.
-
-    a. Caso esteja utilizando o `conda`, exporte as dependências do ambiente para o arquivo `ambiente.yml`:
-
-      ```bash
-      conda env export > ambiente.yml
-      ```
-
-    b. Caso esteja utilizando outro gerenciador de ambientes, exporte as dependências
-    para o arquivo `requirements.txt` ou outro formato de sua preferência. Adicione o
-    arquivo ao controle de versão, removendo o arquivo `ambiente.yml`.
-
-3. Verifique o arquivo `notebooks/01-fb-exemplo.ipynb` para exemplos
-de uso do código.
-4. Renomeie o arquivo `notebooks/01-fb-exemplo.ipynb` para um nome
-mais apropriado ao seu projeto. E siga a convenção de nomenclatura para os demais
-notebooks.
-5. Remova arquivos de exemplo e adicione os arquivos de dados e notebooks do seu
-projeto.
-6. Verifique o arquivo `notebooks/src/config.py` para configurações básicas do projeto.
-Modifique conforme necessário, adicionando ou removendo caminhos de arquivos e
-diretórios.
-7. Atualize o arquivo `referencias/01_dicionario_de_dados.md` com o dicionário de dados
-do seu projeto.
-8. Atualize o `README.md` com informações sobre o seu projeto.
-9. Adicione uma licença ao projeto. Clique
-[aqui](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
-se precisar de ajuda para escolher uma licença.
-10. Renomeie o arquivo `.env.exemplo` para `.env`
-11. Adicione variáveis de ambiente sensíveis ao arquivo `.env`.
-
-Por padrão, o arquivo `.gitignore` já está configurado para ignorar arquivos de dados e
-arquivos de Notebook (para aqueles que usam ferramentas como
-[Jupytext](https://jupytext.readthedocs.io/en/latest/) e similares). Adicione ou remova
-outros arquivos e diretórios do `.gitignore` conforme necessário. Caso deseje adicionar
-forçadamente um Notebook ao controle de versão, faça um commit forçado com o
-comando `git add --force NOME_DO_ARQUIVO.ipynb`.
-
-Para mais informações sobre como usar Git e GitHub, [clique aqui](https://cienciaprogramada.com.br/2021/09/guia-definitivo-git-github/). Sobre ambientes virtuais, [clique aqui](https://cienciaprogramada.com.br/2020/08/ambiente-virtual-projeto-python/).
