@@ -14,6 +14,8 @@ Base retirada do site do [governo canadense](https://open.canada.ca/data/en/data
 - Busquei entender quais features mais influenciavam a variável alvo através de métodos como Permutation Importance e Feature Importance. 
 - O melhor modelo otimizado foi exportado com o nome "xgb_regressor.joblib" para ser usado na página do Streamlit.
 
+![Desempenho do Modelo XGBRegressor](relatorios/imagens/Resultados%20Treino%20x%20Teste%20-%20Modelo%20XGBRegressor.png)
+
 **STREAMLIT**
 - Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo "home_streamlit.py".
 - A página do possui 2 abas, uma para análise exploratória dos dados e outra para realizar a previsão da emissão de CO2 com base em algumas características do veículo
