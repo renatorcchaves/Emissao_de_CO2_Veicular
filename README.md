@@ -23,7 +23,11 @@ Base retirada do site do [governo canadense](https://open.canada.ca/data/en/data
 **Desempenho do Modelo**
 ![Desempenho do Modelo XGBRegressor](relatorios/imagens/Resultados%20Treino%20x%20Teste%20-%20Modelo%20XGBRegressor.png)
 
-## **Streamlit** <img src="relatorios/imagens/icone streamlit.png" title="Streamlit" height="50"/>
+
+## **Streamlit** - [![Streamlit App](https://img.shields.io/badge/Streamlit-Live-red?logo=streamlit)](https://emissaodeco2veicular-projeto-renato.streamlit.app/)
+
+*Para entrar no aplicativo do Streamlit deste projeto basta clicar no ícone acima*
+
 - Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo "home_streamlit.py".
 - A página do possui 2 abas, uma para análise exploratória dos dados e outra para realizar a previsão da emissão de CO2 com base em algumas características do veículo
 - *Análise Exploratória dos Dados*: onde existem tabelas com filtros, gráficos como treemap, gráficos de barra, scatterplot feitos através da biblioteca Plotly para permitir melhor interação do usuário para entender como a emissão de CO2 varia com cada feature dos dados.
