@@ -28,7 +28,7 @@ Base retirada do site do [governo canadense](https://open.canada.ca/data/en/data
 
 *Para entrar no aplicativo do Streamlit deste projeto basta clicar no ícone acima*
 
-- Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo "home_streamlit.py".
+- Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo [home_streamlit.py](home_streamlit.py).
 - A página do possui 2 abas, uma para análise exploratória dos dados e outra para realizar a previsão da emissão de CO2 com base em algumas características do veículo
 - *Análise Exploratória dos Dados*: onde existem tabelas com filtros, gráficos como treemap, gráficos de barra, scatterplot feitos através da biblioteca Plotly para permitir melhor interação do usuário para entender como a emissão de CO2 varia com cada feature dos dados.
 - *Modelo de Previsão de CO<sub>2</sub>*: fazendo uso do modelo exportado citado acima, o usuário pode inputar algumas informações genéricas de qualquer carro (ano, tipo de carro, tamanho do motor, numero de cilindros, transmissão, tipo de combustível, consumo urbano, rodoviário e combinado) e há um botão para fornecer uma estimativa da emissão de CO2 do veículo com base nesses dados inputados. 
