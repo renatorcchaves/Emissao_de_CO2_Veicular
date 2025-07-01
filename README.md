@@ -4,19 +4,26 @@ O projeto atual tem como objetivo, a partir de uma base de dados do governo cana
 
 Base retirada do site do [governo canadense](https://open.canada.ca/data/en/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64).
 
-**ANÁLISE EXPLORATÓRIA** 
+## **Análise Exploratória** 
 - Os dados retirados do link acima foram unificados, tratados e analisados através do arquivo "01_EDA_Analise_Exploratoria.ipynb". Com diversos gráficos já pudemos ter uma ideia inicial de como cada feature influenciava a nossa variável alvo (emissão de CO2).
 
-**MODELOS DE REGRESSÃO** 
+## **Modelo de Regressão** 
 - Com os dados tratados, através do arquivo "02_Comparando_Modelos_Regressao.ipynb" foram testados diversos modelos e regressão - como LinearRegression, Ridge, Lasso, DecisionTreeRegressor, LightGBMRegressor, XGBRegressor, KNeighborsRegressor e LinearSVR - para entender qual deles tinha melhores resultados na previsão da emissão de CO2 para cada veículo. 
 - Foi tomado o cuidado de fazer o preprocessamento das colunas categóricas ordinais e não ordinais, e da normalização dos dados de features numéricas e da variável alvo através de métodos como PowerTransform e QuantileTransform. 
 - Tendo definido o melhor dos modelos testados acima, o que apresentou melhores resultados (XGBRegressor) passou pela otimização de parametros através de ferramentas como GridSearchCV. 
-- Busquei entender quais features mais influenciavam a variável alvo através de métodos como Permutation Importance e Feature Importance. 
+- Busquei entender quais features mais influenciavam a variável alvo através de métodos como Permutation Importance e Feature Importance (*imagem abaixo*).
+- Analisei o desempenho (erro) que esse melhor modelo gerou quando comparado entre uma base de treino e teste através de métodos como PredictionErrorDisplay (*imagem abaixo*).
 - O melhor modelo otimizado foi exportado com o nome "xgb_regressor.joblib" para ser usado na página do Streamlit.
 
+**Features Mais Importantes**
+
+<img src="relatorios/imagens/Permutation Importance.png" title="Título" height="400"/>
+
+
+**Desempenho do Modelo**
 ![Desempenho do Modelo XGBRegressor](relatorios/imagens/Resultados%20Treino%20x%20Teste%20-%20Modelo%20XGBRegressor.png)
 
-**STREAMLIT**
+## **Streamlit** <img src="relatorios/imagens/icone streamlit.png" title="Streamlit" height="50"/>
 - Para melhorar a interatividade com os dados deste projeto, foi criado um código para ser usado em uma página do Streamlit por meio do arquivo "home_streamlit.py".
 - A página do possui 2 abas, uma para análise exploratória dos dados e outra para realizar a previsão da emissão de CO2 com base em algumas características do veículo
 - *Análise Exploratória dos Dados*: onde existem tabelas com filtros, gráficos como treemap, gráficos de barra, scatterplot feitos através da biblioteca Plotly para permitir melhor interação do usuário para entender como a emissão de CO2 varia com cada feature dos dados.
