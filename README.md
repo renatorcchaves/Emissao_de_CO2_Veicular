@@ -13,7 +13,7 @@ Base retirada do site do [governo canadense](https://open.canada.ca/data/en/data
 - Tendo definido o melhor dos modelos testados acima, o que apresentou melhores resultados (XGBRegressor) passou pela otimização de parametros através de ferramentas como GridSearchCV. 
 - Busquei entender quais features mais influenciavam a variável alvo através de métodos como Permutation Importance e Feature Importance (*imagem abaixo*).
 - Analisei o desempenho (erro) que esse melhor modelo gerou quando comparado entre uma base de treino e teste através de métodos como PredictionErrorDisplay (*imagem abaixo*).
-- O melhor modelo otimizado foi exportado com o nome [XGB_Regressor](modelos/xgb_regressor.joblib) para ser usado na página do Streamlit.
+- O melhor modelo otimizado foi exportado com o nome [XGB_Regressor.joblib](modelos/) para ser usado na página do Streamlit.
 
 **Features Mais Importantes**
 
